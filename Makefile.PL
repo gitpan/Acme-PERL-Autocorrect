@@ -24,7 +24,7 @@ my %WriteMakefileArgs = (
   'PREREQ_PM' => {
     'optimizer' => '0'
   },
-  'VERSION' => '1.20110627',
+  'VERSION' => '1.20110629',
   'test' => {
     'TESTS' => 't/*.t'
   }

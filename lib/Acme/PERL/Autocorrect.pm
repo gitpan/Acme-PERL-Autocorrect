@@ -1,6 +1,6 @@
 package Acme::PERL::Autocorrect;
 BEGIN {
-  $Acme::PERL::Autocorrect::VERSION = '1.20110627';
+  $Acme::PERL::Autocorrect::VERSION = '1.20110629';
 }
 # ABSTRACT: corrects PERL to Perl in strings automatically
 
@@ -15,8 +15,8 @@ use optimizer 'extend-c' => sub
     my $sv = $op->sv;
     return unless $op->sv->isa( 'B::PV' );
     my $pv = $op->sv->PV;
-    return unless "$pv" eq 'PERL';
-    $op->sv( 'Perl' );
+    $pv =~ s{\bPERL(?!::|/)}{Perl};
+    $op->sv( $pv );
 };
 
 1;
@@ -46,8 +46,9 @@ chromatic, C<< <chromatic@wgz.org> >>
 
 =head1 BUGS
 
-This doesn't poke yet into bigger strings which merely I<contain> PERL. Patches
-welcome.
+You can still craft strings that don't resolve to constant strings during the
+parsing and optimization stages which this module cannot correct. See also the
+incompleteness theorem.
 
 =head1 ACKNOWLEDGEMENTS
 

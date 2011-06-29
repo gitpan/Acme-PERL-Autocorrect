@@ -15,4 +15,4 @@ meta-spec:
 name: Acme-PERL-Autocorrect
 requires:
   optimizer: 0
-version: 1.20110627
+version: 1.20110629
